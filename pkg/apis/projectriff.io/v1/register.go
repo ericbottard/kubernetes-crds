@@ -22,6 +22,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	riff "github.com/projectriff/kubernetes-crds/pkg/apis/projectriff.io"
+	"github.com/emicklei/go-restful/log"
 )
 
 // SchemeGroupVersion is group version used to register these objects
@@ -44,6 +45,8 @@ func init() {
 	// generated functions takes place in the generated files. The separation
 	// makes the code compile even when the generated files are missing.
 	localSchemeBuilder.Register(addKnownTypes)
+	log.Print("Registering defaults")
+	localSchemeBuilder.Register(RegisterDefaults)
 }
 
 // Adds the list of known types to api.Scheme.
